@@ -1,7 +1,7 @@
 import { getArrayOfOperationsFromDatestring } from "../src/getArrayOfOperationsFromDatestring";
 
-export const parse = (datestring: string) => {
-    // new Date()
-    const opsArray = getArrayOfOperationsFromDatestring(datestring)
-    return datestring 
+export function parse(datestring: string) {
+  const opsArray = getArrayOfOperationsFromDatestring(datestring)
+  
+  return datestring
 }
