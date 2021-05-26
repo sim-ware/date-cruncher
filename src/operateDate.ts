@@ -1,9 +1,3 @@
-// overall function |operateDate| that takes Operation from Array and decides
-// through CASE || SWITCH
-// & returns just the string without the operator
-// whether to call sub-functions |subtract| |add| |roundToClosestUnit|
-
-
 export function operateDate(operation: string, date:Date):Date { 
   const unit = operation.slice(-1)
   const quantity = parseInt(operation.slice(1, -1))
