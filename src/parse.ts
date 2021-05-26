@@ -1,17 +1,14 @@
 import { getArrayOfOperationsFromDatestring } from "../src/getArrayOfOperationsFromDatestring";
+import { dateOperator } from "../src/dateOperator";
 
 
 export function parse(datestring: string) {
   const opsArray = getArrayOfOperationsFromDatestring(datestring)
+  let date = new Date()
   
-  // let date = new Date()
-
   opsArray.forEach(op => {
-    console.log(`OP:${op}`)
-    // return version of Date with operation performed on it
-    // console.log(`DATE:${date}`)
+    date = dateOperator(op, date)
   })
-  console.log(`--------------------`)
   
   return datestring
 }
