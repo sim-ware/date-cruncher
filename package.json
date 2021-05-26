@@ -1,0 +1,26 @@
+{
+  "name": "date-cruncher",
+  "version": "1.0.0",
+  "description": "Parse and Stringify dates into a shorthand syntax e.g. |now-1d/d|",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sim-ware/date-cruncher.git"
+  },
+  "author": "sim-ware",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sim-ware/date-cruncher/issues"
+  },
+  "homepage": "https://github.com/sim-ware/date-cruncher#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.1",
+    "ts-jest": "^27.0.0",
+    "typescript": "^4.2.4"
+  }
+}

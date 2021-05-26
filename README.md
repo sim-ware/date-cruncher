@@ -39,3 +39,6 @@ now-1d    -> 2020-04-30T00:00:00 - now minus 1 day
 now+1d    -> 2020-05-02T00:00:00 - now add 1 day
 now-4d-4h -> 2020-04-26T20:00:00 - now minus four days and four hours
 ```
+
+## Approach
+* initial steps to create TypeScript & Jest suite: https://itnext.io/testing-with-jest-in-typescript-cc1cd0095421
