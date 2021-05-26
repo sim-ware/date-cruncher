@@ -1,5 +1,5 @@
 import { getArrayOfOperationsFromDatestring } from "../src/getArrayOfOperationsFromDatestring";
-import { dateOperator } from "../src/dateOperator";
+import { operateDate } from "./operateDate";
 
 
 export function parse(datestring: string) {
@@ -7,7 +7,7 @@ export function parse(datestring: string) {
   let date = new Date()
   
   opsArray.forEach(op => {
-    date = dateOperator(op, date)
+    date = operateDate(op, date)
   })
   
   return datestring
