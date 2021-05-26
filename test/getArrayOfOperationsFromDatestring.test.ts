@@ -1,6 +1,7 @@
 import { getArrayOfOperationsFromDatestring } from "../src/getArrayOfOperationsFromDatestring";
 
-describe("getArrayOfOperationsFromDatestring", () => {
+
+describe("__getArrayOfOperationsFromDatestring__", () => {
   it("should return a string[] of all expected '- subtract', '+ add', and '/{unit} round to closest unit' operations", () => {
     expect(getArrayOfOperationsFromDatestring('now-1y/y')).toStrictEqual(['-1y', '/y']);
     expect(getArrayOfOperationsFromDatestring('now/y')).toStrictEqual(['/y']);
