@@ -1,3 +1,11 @@
 export function getArrayOfOperationsFromDatestring(datestring: string):string[] { 
-  return ['test']
+  const dateStringWithoutNow = datestring.slice(3)
+  const datestringWithCommas = dateStringWithoutNow
+    .replace(/-/gi, ",-")
+    .replace(/\//gi, ",/")
+    .replace(/\+/gi, ",+")
+
+  return datestringWithCommas
+    .split(',')
+    .filter(Boolean)
 }
