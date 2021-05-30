@@ -11,37 +11,37 @@ export function operateDate(operation: string, date:Date):Date {
 
 export function subtract(date:Date, unit: string, quantity:number): Date {
   if (unit === 'd') {
-    date.setDate(date.getDate() - quantity);
+    date.setUTCDate(date.getUTCDate() - quantity);
     return date
   }
 
   if (unit === 'M') {
-    date.setMonth(date.getMonth() - quantity);
+    date.setUTCMonth(date.getUTCMonth() - quantity);
     return date
   }
 
   if (unit === 'y') {
-    date.setFullYear(date.getFullYear() - quantity);
+    date.setUTCFullYear(date.getUTCFullYear() - quantity);
     return date
   }
 
   if (unit === 'h') {
-    date.setHours(date.getHours() - quantity);
+    date.setUTCHours(date.getUTCHours() - quantity);
     return date
   }
 
   if (unit === 'm') {
-    date.setMinutes(date.getMinutes() - quantity);
+    date.setUTCMinutes(date.getUTCMinutes() - quantity);
     return date
   }
 
   if (unit === 's') {
-    date.setSeconds(date.getSeconds() - quantity);
+    date.setUTCSeconds(date.getUTCSeconds() - quantity);
     return date
   }
 
   if (unit === 'w') {
-    date.setDate(date.getDate() - quantity*7);
+    date.setUTCDate(date.getUTCDate() - quantity*7);
     return date
   }
 
@@ -50,37 +50,37 @@ export function subtract(date:Date, unit: string, quantity:number): Date {
 
 export function add(date:Date, unit: string, quantity:number): Date {
   if (unit === 'd') {
-    date.setDate(date.getDate() + quantity);
+    date.setUTCDate(date.getUTCDate() + quantity);
     return date
   }
 
   if (unit === 'M') {
-    date.setMonth(date.getMonth() + quantity);
+    date.setUTCMonth(date.getUTCMonth() + quantity);
     return date
   }
 
   if (unit === 'y') {
-    date.setFullYear(date.getFullYear() + quantity);
+    date.setUTCFullYear(date.getUTCFullYear() + quantity);
     return date
   }
 
   if (unit === 'h') {
-    date.setHours(date.getHours() + quantity);
+    date.setUTCHours(date.getUTCHours() + quantity);
     return date
   }
 
   if (unit === 'm') {
-    date.setMinutes(date.getMinutes() + quantity);
+    date.setUTCMinutes(date.getUTCMinutes() + quantity);
     return date
   }
 
   if (unit === 's') {
-    date.setSeconds(date.getSeconds() + quantity);
+    date.setUTCSeconds(date.getUTCSeconds() + quantity);
     return date
   }
 
   if (unit === 'w') {
-    date.setDate(date.getDate() + quantity*7);
+    date.setUTCDate(date.getUTCDate() + quantity*7);
     return date
   }
 
@@ -89,69 +89,85 @@ export function add(date:Date, unit: string, quantity:number): Date {
 
 export function roundToClosestUnit(date:Date, unit: string): Date {
   if (unit === 'd') {
-    date.setDate(date.getDate() + Math.round(date.getHours()/24));
+    date.setUTCDate(date.getUTCDate() + Math.round(date.getUTCHours()/24));
     date.setUTCHours(0, 0, 0, 0);
     return date
   }
 
-  // if (unit === 'M') {
-  // var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+  if (unit === 'M') {
+    let monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+    
+    // Adjust for leap years
+    if (
+      date.getUTCFullYear() % 400 == 0 ||
+      date.getUTCFullYear() % 100 != 0 && date.getUTCFullYear() % 4 == 0
+    ) {
+      monthLength[1] = 29;
+    }
+    
+    const dateOfMonth = date.getUTCDate()
+    const monthMidpoint = monthLength[date.getUTCMonth()] / 2
 
-  // // Adjust for leap years
-  // if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
-  //     monthLength[1] = 29;
-  //   date.setMonth(date.getMonth() + quantity);
-  //   return date
-  // 
-  // if the date is above the monthLength|date| / 2, then round to next month
-  //  if not round to 1st of current month
-  // }
+    if (
+      dateOfMonth >= monthMidpoint || 
+      monthMidpoint === 15.5 && date.getUTCDate() === 15 && date.getUTCHours() >= 12 
+    ) { 
+      date.setUTCMonth(date.getUTCMonth() + 1);
+      date.setUTCDate(1);
+      date.setUTCHours(0, 0, 0, 0);
+      return date
+    } else {
+      date.setUTCDate(1);
+      date.setUTCHours(0, 0, 0, 0);
+      return date
+    }
+  }
 
   if (unit === 'y') {
-    const midYearDatestring = `${date.getFullYear()}-07-01T12:00:00.000Z`
+    const midYearDatestring = `${date.getUTCFullYear()}-07-01T12:00:00.000Z`
     const midYearPoint = new Date(midYearDatestring)
     const roundUp = date >= midYearPoint
 
     if (roundUp) {
-      date = new Date(`${date.getFullYear() + 1}-01-01T00:00:00.000Z`)
+      date = new Date(`${date.getUTCFullYear() + 1}-01-01T00:00:00.000Z`)
     } else {
-      date = new Date(`${date.getFullYear()}-01-01T00:00:00.000Z`)
+      date = new Date(`${date.getUTCFullYear()}-01-01T00:00:00.000Z`)
     }
 
     return date
   }
 
   if (unit === 'h') {
-    date.setHours(date.getHours() + Math.round(date.getMinutes()/60));
-    date.setMinutes(0, 0, 0);
+    date.setUTCHours(date.getUTCHours() + Math.round(date.getUTCMinutes()/60));
+    date.setUTCMinutes(0, 0, 0);
     return date
   }
 
   if (unit === 'm') {
-    date.setMinutes(date.getMinutes() + Math.round(date.getSeconds()/60));
-    date.setSeconds(0, 0);
+    date.setUTCMinutes(date.getUTCMinutes() + Math.round(date.getUTCSeconds()/60));
+    date.setUTCSeconds(0, 0);
     return date
   }
 
   if (unit === 's') {
-    date.setSeconds(date.getSeconds() + Math.round(date.getMilliseconds()/1000), 0);
+    date.setUTCSeconds(date.getUTCSeconds() + Math.round(date.getUTCMilliseconds()/1000), 0);
     return date
   }
 
   if (unit === 'w') {
-    if (date.getDay() === 1) {
+    if (date.getUTCDay() === 1) {
       date.setUTCHours(0, 0, 0, 0);
       return date
     }
 
-    if (date.getDay() >= 4) { // Thurs = 4
+    if (date.getUTCDay() >= 4) { // Thurs = 4
       let nextMonday = new Date();
-      nextMonday.setDate(date.getDate() + (8 - date.getDay()))
+      nextMonday.setUTCDate(date.getUTCDate() + (8 - date.getUTCDay()))
       nextMonday.setUTCHours(0, 0, 0, 0);
       return nextMonday
     } else {
       let prevMonday = new Date();
-      prevMonday.setDate(date.getDate() - date.getDay() + 1)
+      prevMonday.setUTCDate(date.getUTCDate() - date.getUTCDay() + 1)
       prevMonday.setUTCHours(0, 0, 0, 0);
       return prevMonday
     }

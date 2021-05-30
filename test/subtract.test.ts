@@ -15,7 +15,7 @@ describe("__subtract__", () => {
     expect(subtract(new Date('2021-05-26T20:17:56.511Z'), 'M', 1))
       .toStrictEqual(new Date('2021-04-26T20:17:56.511Z'));
     expect(subtract(new Date('2021-05-26T20:17:56.511Z'), 'M', 2))
-      .toStrictEqual(new Date('2021-03-26T21:17:56.511Z')); // DST
+      .toStrictEqual(new Date('2021-03-26T20:17:56.511Z'));
     expect(subtract(new Date('2021-05-26T20:17:56.511Z'), 'M', 11))
       .toStrictEqual(new Date('2020-06-26T20:17:56.511Z'));
 
@@ -57,6 +57,6 @@ describe("__subtract__", () => {
     expect(subtract(new Date('2021-05-26T20:17:56.511Z'), 'w', 2))
       .toStrictEqual(new Date('2021-05-12T20:17:56.511Z'));
     expect(subtract(new Date('2021-05-26T20:17:56.511Z'), 'w', 11))
-      .toStrictEqual(new Date('2021-03-10T21:17:56.511Z')); // DST
+      .toStrictEqual(new Date('2021-03-10T20:17:56.511Z'));
   });
 });

@@ -10,12 +10,24 @@ describe("__roundToClosestUnit__", () => {
       .toStrictEqual(new Date('2021-05-26T00:00:00.000Z'));
 
     // // M month
-    // expect(roundToClosestUnit(new Date('2021-05-26T20:17:56.511Z'), 'M', 1))
-    //   .toStrictEqual(new Date('2021-06-26T20:17:56.511Z'));
-    // expect(roundToClosestUnit(new Date('2021-05-26T20:17:56.511Z'), 'M', 2))
-    //   .toStrictEqual(new Date('2021-07-26T20:17:56.511Z'));
-    // expect(roundToClosestUnit(new Date('2021-05-26T20:17:56.511Z'), 'M', 11))
-    //   .toStrictEqual(new Date('2022-04-26T20:17:56.511Z'));
+    // expect(roundToClosestUnit(new Date('2021-01-05T20:17:56.511Z'), 'M'))
+    //   .toStrictEqual(new Date('2021-01-01T00:00:00.000Z'));
+    // expect(roundToClosestUnit(new Date('2021-01-15T11:59:59.999Z'), 'M'))
+    //   .toStrictEqual(new Date('2021-01-01T00:00:00.000Z'));
+    // expect(roundToClosestUnit(new Date('2021-01-15T12:00:00.000Z'), 'M'))
+    //   .toStrictEqual(new Date('2021-02-01T00:00:00.000Z'));
+    // expect(roundToClosestUnit(new Date('2021-02-05T20:17:56.511Z'), 'M'))
+    //   .toStrictEqual(new Date('2021-02-01T00:00:00.000Z'));
+    // expect(roundToClosestUnit(new Date('2021-02-13T23:59:59.999Z'), 'M'))
+    //   .toStrictEqual(new Date('2021-02-01T00:00:00.000Z'));
+    // expect(roundToClosestUnit(new Date('2021-02-14T00:00:00.000Z'), 'M'))
+    //   .toStrictEqual(new Date('2021-03-01T00:00:00.000Z'));
+    // expect(roundToClosestUnit(new Date('2021-04-05T20:17:56.511Z'), 'M'))
+    //   .toStrictEqual(new Date('2021-04-01T00:00:00.000Z'));
+    expect(roundToClosestUnit(new Date('2021-04-14T23:59:59.999Z'), 'M'))
+      .toStrictEqual(new Date('2021-04-01T00:00:00.000Z'));
+    // expect(roundToClosestUnit(new Date('2021-04-15T00:00:00.000Z'), 'M'))
+    //   .toStrictEqual(new Date('2021-05-01T00:00:00.000Z'));
 
     // y year
     expect(roundToClosestUnit(new Date('2021-07-01T12:00:00.000Z'), 'y'))
