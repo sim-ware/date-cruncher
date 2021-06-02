@@ -22,7 +22,9 @@ describe("__operateDate__", () => {
       .toStrictEqual(new Date('2021-01-02T00:00:00.000Z'))
 
     // 'now-4d-4h'
-    // 'now-4d-23h'
-    // 'now-1M'
+    expect(operateDate('-4d', new Date('2021-01-01T00:00:00.000Z')))
+      .toStrictEqual(new Date('2020-12-28T00:00:00.000Z'))
+    expect(operateDate('-4h', new Date('2021-01-01T00:00:00.000Z')))
+      .toStrictEqual(new Date('2020-12-31T20:00:00.000Z'))
   });
 });
