@@ -2,7 +2,7 @@ import { operateDate } from "../src/operateDate";
 
 
 describe("__operateDate__", () => {
-  it("should return a string[] of all expected '- subtract', '+ add', and '/{unit} round to closest unit' operations", () => {
+  it("should take a string of an Operation and a Date and apply the Operation", () => {
     // 'now-1y/y'
     expect(operateDate('-1y', new Date('2021-01-01T00:00:00.000Z')))
       .toStrictEqual(new Date('2020-01-01T00:00:00.000Z'))
@@ -26,5 +26,29 @@ describe("__operateDate__", () => {
       .toStrictEqual(new Date('2020-12-28T00:00:00.000Z'))
     expect(operateDate('-4h', new Date('2021-01-01T00:00:00.000Z')))
       .toStrictEqual(new Date('2020-12-31T20:00:00.000Z'))
+
+    // ERRORS
+    expect(() => operateDate('-369x', new Date('2021-01-01T00:00:00.000Z')))
+      .toThrow('Error: UNIT OF TIME NOT RECOGNISED');
+    expect(() => operateDate('+369x', new Date('2021-01-01T00:00:00.000Z')))
+      .toThrow('Error: UNIT OF TIME NOT RECOGNISED');
+    expect(() => operateDate('/x', new Date('2021-01-01T00:00:00.000Z')))
+      .toThrow('Error: UNIT OF TIME NOT RECOGNISED');
+
+    expect(() => operateDate('x369d', new Date('2021-01-01T00:00:00.000Z')))
+      .toThrow('Error: OPERATOR NOT RECOGNISED');
+    expect(() => operateDate('x369M', new Date('2021-01-01T00:00:00.000Z')))
+      .toThrow('Error: OPERATOR NOT RECOGNISED');
+    expect(() => operateDate('x369y', new Date('2021-01-01T00:00:00.000Z')))
+      .toThrow('Error: OPERATOR NOT RECOGNISED');
+    expect(() => operateDate('x369h', new Date('2021-01-01T00:00:00.000Z')))
+      .toThrow('Error: OPERATOR NOT RECOGNISED');
+    expect(() => operateDate('x369m', new Date('2021-01-01T00:00:00.000Z')))
+      .toThrow('Error: OPERATOR NOT RECOGNISED');
+    expect(() => operateDate('x369s', new Date('2021-01-01T00:00:00.000Z')))
+      .toThrow('Error: OPERATOR NOT RECOGNISED');
+    expect(() => operateDate('x369w', new Date('2021-01-01T00:00:00.000Z')))
+      .toThrow('Error: OPERATOR NOT RECOGNISED');
+    
   });
 });
