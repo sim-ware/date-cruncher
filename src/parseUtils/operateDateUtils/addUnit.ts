@@ -1,15 +1,3 @@
-export function addUnit(date: Date, unit: string, quantity: number): Date {
-  if (unit === 'd') return addDays(date, quantity)
-  if (unit === 'M') return addMonths(date, quantity)
-  if (unit === 'y') return addYears(date, quantity)
-  if (unit === 'h') return addHours(date, quantity)
-  if (unit === 'm') return addMinutes(date, quantity)
-  if (unit === 's') return addSeconds(date, quantity)
-  if (unit === 'w') return addWeeks(date, quantity)
-
-  throw new Error('FAILED TO PARSE UNIT OF TIME OR UNIT OF TIME INVALID');
-}
-
 export function addDays(date: Date, quantity: number):Date {
   date.setUTCDate(date.getUTCDate() + quantity);
   return date

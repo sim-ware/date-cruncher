@@ -6,7 +6,7 @@ import {
   addMinutes,
   addSeconds,
   addWeeks
-} from "../src/addUnit";
+} from "../../../src/parseUtils/operateDateUtils/addUnit";
 
 
 describe("__addDays__", () => {

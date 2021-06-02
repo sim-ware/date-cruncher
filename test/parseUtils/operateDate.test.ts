@@ -1,4 +1,4 @@
-import { operateDate } from "../src/operateDate";
+import { operateDate } from "../../src/parseUtils/operateDate";
 
 
 describe("__operateDate__", () => {

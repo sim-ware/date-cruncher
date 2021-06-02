@@ -1,4 +1,4 @@
-import { getArrayOfOperationsFromDatestring } from "../src/getArrayOfOperationsFromDatestring";
+import { getArrayOfOperationsFromDatestring } from "../../src/parseUtils/getArrayOfOperationsFromDatestring";
 
 
 describe("__getArrayOfOperationsFromDatestring__", () => {

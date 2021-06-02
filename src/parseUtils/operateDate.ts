@@ -1,9 +1,9 @@
 import { subtractDays, subtractMonths, subtractYears, subtractHours,
-  subtractMinutes, subtractSeconds, subtractWeeks } from "./subtractUnit"
+  subtractMinutes, subtractSeconds, subtractWeeks } from "./operateDateUtils/subtractUnit"
 import { addDays, addMonths, addYears, addHours,
-  addMinutes, addSeconds, addWeeks } from "./addUnit"
+  addMinutes, addSeconds, addWeeks } from "./operateDateUtils/addUnit"
 import { roundToClosestDay, roundToClosestWeek, roundToClosestSecond, roundToClosestMinute,
-  roundToClosestHour, roundToClosestYear, roundToClosestMonth } from "./roundToClosestUnit"
+  roundToClosestHour, roundToClosestYear, roundToClosestMonth } from "./operateDateUtils/roundToClosestUnit"
 
 
 export function operateDate(operation: string, date:Date):Date { 

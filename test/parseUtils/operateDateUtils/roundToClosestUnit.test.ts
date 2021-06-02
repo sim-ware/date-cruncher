@@ -6,7 +6,7 @@ import {
   roundToClosestHour,
   roundToClosestYear,
   roundToClosestMonth
-} from "../src/roundToClosestUnit";
+} from "../../../src/parseUtils/operateDateUtils/roundToClosestUnit";
 
 
 describe("__roundToClosestDay__", () => {
@@ -47,7 +47,16 @@ describe("__roundToClosestMonth__", () => {
 
     expect(roundToClosestMonth(new Date('2021-04-15T00:00:00.000Z')))
       .toStrictEqual(new Date('2021-05-01T00:00:00.000Z'));
-      // add tests for specific leap year to make sure it works //
+
+    // leap year 2020 //
+    expect(roundToClosestMonth(new Date('2020-02-05T20:17:56.511Z')))
+      .toStrictEqual(new Date('2020-02-01T00:00:00.000Z'));
+
+    expect(roundToClosestMonth(new Date('2020-02-14T11:59:59.999Z')))
+      .toStrictEqual(new Date('2020-02-01T00:00:00.000Z'));
+
+    expect(roundToClosestMonth(new Date('2020-02-14T12:00:00.000Z')))
+      .toStrictEqual(new Date('2020-03-01T00:00:00.000Z'));
   });
 });
 

@@ -6,7 +6,7 @@ import {
   subtractMinutes,
   subtractSeconds,
   subtractWeeks
-} from "../src/subtractUnit";
+} from "../../../src/parseUtils/operateDateUtils/subtractUnit";
 
 
 describe("__subtractDays__", () => {
