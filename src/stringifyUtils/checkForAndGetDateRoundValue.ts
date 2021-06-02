@@ -1,4 +1,13 @@
-export function isDateRounded(date: Date): string | null {
+export function checkForAndGetDateRoundValue(date: Date, now: Date): string|null { 
+  if (
+    isDateRounded(date) && 
+    isDateRounded(date) !== isDateRounded(now)
+  ) return isDateRounded(date)
+
+  return null
+}
+
+function isDateRounded(date: Date): string|null {
   const areSecondsRounded = date.getUTCMilliseconds() === 0
   const areMinutesRounded = date.getUTCSeconds() === 0 && areSecondsRounded
   const areHoursRounded = date.getUTCMinutes() === 0 && areMinutesRounded
@@ -14,18 +23,6 @@ export function isDateRounded(date: Date): string | null {
   if (areHoursRounded) return '/h'
   if (areMinutesRounded) return '/m'
   if (areSecondsRounded) return '/s'
-
-  return null
-}
-
-export function checkForAndGetDateRoundValue(date: Date, now: Date) {
-  const dateRound = isDateRounded(date)
-  const nowDateAlreadyRound = isDateRounded(now) 
-
-  if (
-    dateRound && 
-    dateRound !== nowDateAlreadyRound
-  ) return dateRound
 
   return null
 }
