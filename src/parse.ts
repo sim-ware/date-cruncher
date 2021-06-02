@@ -2,13 +2,13 @@ import { getArrayOfOperationsFromDatestring } from "./parseUtils/getArrayOfOpera
 import { operateDate } from "./parseUtils/operateDate";
 
 
-export function parse(datestring: string) {
+export function parse(datestring: string, givenNow?: Date): Date {
   const opsArray = getArrayOfOperationsFromDatestring(datestring)
-  let date = new Date()
+  let date = givenNow || new Date()
   
   opsArray.forEach(op => {
     date = operateDate(op, date)
   })
   
-  return datestring
+  return date
 }
