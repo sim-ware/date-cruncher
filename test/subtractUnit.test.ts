@@ -1,62 +1,109 @@
-import { subtractUnit } from "../src/subtractUnit";
+import {
+  subtractUnit,
+  subtractDays,
+  subtractMonths,
+  subtractYears,
+  subtractHours,
+  subtractMinutes,
+  subtractSeconds,
+  subtractWeeks
+} from "../src/subtractUnit";
 
 
 describe("__subtractUnit__", () => {
-  it("should take a date, unit of time, and a quantity and subtract", () => {
-    // d days
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'd', 1))
+  it("should take a date, unit of time, and a quantity and call the correct Subtraction | Unit Function", () => {
+    // mock and check function calls somehow?
+    // subtractUnit()
+  });
+});
+
+describe("__subtractDays__", () => {
+  it("should take a date, and subtract a quantity of Days from it", () => {
+    expect(subtractDays(new Date('2021-05-26T20:17:56.511Z'), 1))
       .toStrictEqual(new Date('2021-05-25T20:17:56.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'd', 2))
+
+    expect(subtractDays(new Date('2021-05-26T20:17:56.511Z'), 2))
       .toStrictEqual(new Date('2021-05-24T20:17:56.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'd', 11))
+
+    expect(subtractDays(new Date('2021-05-26T20:17:56.511Z'), 11))
       .toStrictEqual(new Date('2021-05-15T20:17:56.511Z'));
+  });
+});
 
-    // M month
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'M', 1))
+describe("__subtractMonths__", () => {
+  it("should take a date, and subtract a quantity of Months from it", () => {
+    expect(subtractMonths(new Date('2021-05-26T20:17:56.511Z'), 1))
       .toStrictEqual(new Date('2021-04-26T20:17:56.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'M', 2))
+
+    expect(subtractMonths(new Date('2021-05-26T20:17:56.511Z'), 2))
       .toStrictEqual(new Date('2021-03-26T20:17:56.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'M', 11))
+
+    expect(subtractMonths(new Date('2021-05-26T20:17:56.511Z'), 11))
       .toStrictEqual(new Date('2020-06-26T20:17:56.511Z'));
+  });
+});
 
-    // y year
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'y', 1))
+describe("__subtractYears__", () => {
+  it("should take a date, and subtract a quantity of Years from it", () => {
+    expect(subtractYears(new Date('2021-05-26T20:17:56.511Z'), 1))
       .toStrictEqual(new Date('2020-05-26T20:17:56.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'y', 2))
+      
+    expect(subtractYears(new Date('2021-05-26T20:17:56.511Z'), 2))
       .toStrictEqual(new Date('2019-05-26T20:17:56.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'y', 11))
+
+    expect(subtractYears(new Date('2021-05-26T20:17:56.511Z'), 11))
       .toStrictEqual(new Date('2010-05-26T20:17:56.511Z'));
+  });
+});
 
-    // h hour
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'h', 1))
+describe("__subtractHours__", () => {
+  it("should take a date, and subtract a quantity of Hours from it", () => {
+    expect(subtractHours(new Date('2021-05-26T20:17:56.511Z'), 1))
       .toStrictEqual(new Date('2021-05-26T19:17:56.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'h', 2))
+
+    expect(subtractHours(new Date('2021-05-26T20:17:56.511Z'), 2))
       .toStrictEqual(new Date('2021-05-26T18:17:56.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'h', 11))
+
+    expect(subtractHours(new Date('2021-05-26T20:17:56.511Z'), 11))
       .toStrictEqual(new Date('2021-05-26T09:17:56.511Z'));
+  });
+});
 
-    // m minute
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'm', 1))
+describe("__subtractMinutes__", () => {
+  it("should take a date, and subtract a quantity of Minutes from it", () => {
+    expect(subtractMinutes(new Date('2021-05-26T20:17:56.511Z'), 1))
       .toStrictEqual(new Date('2021-05-26T20:16:56.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'm', 2))
+
+    expect(subtractMinutes(new Date('2021-05-26T20:17:56.511Z'), 2))
       .toStrictEqual(new Date('2021-05-26T20:15:56.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'm', 11))
+
+    expect(subtractMinutes(new Date('2021-05-26T20:17:56.511Z'), 11))
       .toStrictEqual(new Date('2021-05-26T20:06:56.511Z'));
+  });
+});
 
-    // s second
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 's', 1))
+describe("__subtractSeconds__", () => {
+  it("should take a date, and subtract a quantity of Seconds from it", () => {
+    expect(subtractSeconds(new Date('2021-05-26T20:17:56.511Z'), 1))
       .toStrictEqual(new Date('2021-05-26T20:17:55.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 's', 2))
-      .toStrictEqual(new Date('2021-05-26T20:17:54.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 's', 11))
-      .toStrictEqual(new Date('2021-05-26T20:17:45.511Z'));
 
-    // w week
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'w', 1))
+    expect(subtractSeconds(new Date('2021-05-26T20:17:56.511Z'), 2))
+      .toStrictEqual(new Date('2021-05-26T20:17:54.511Z'));
+
+    expect(subtractSeconds(new Date('2021-05-26T20:17:56.511Z'), 11))
+      .toStrictEqual(new Date('2021-05-26T20:17:45.511Z'));
+  });
+});
+
+describe("__subtractWeeks__", () => {
+  it("should take a date, and subtract a quantity of Weeks from it", () => {
+    expect(subtractWeeks(new Date('2021-05-26T20:17:56.511Z'), 1))
       .toStrictEqual(new Date('2021-05-19T20:17:56.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'w', 2))
+
+    expect(subtractWeeks(new Date('2021-05-26T20:17:56.511Z'), 2))
       .toStrictEqual(new Date('2021-05-12T20:17:56.511Z'));
-    expect(subtractUnit(new Date('2021-05-26T20:17:56.511Z'), 'w', 11))
+
+    expect(subtractWeeks(new Date('2021-05-26T20:17:56.511Z'), 11))
       .toStrictEqual(new Date('2021-03-10T20:17:56.511Z'));
   });
 });
