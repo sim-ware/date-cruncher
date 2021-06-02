@@ -1,5 +1,4 @@
 import {
-  subtractUnit,
   subtractDays,
   subtractMonths,
   subtractYears,
@@ -9,13 +8,6 @@ import {
   subtractWeeks
 } from "../src/subtractUnit";
 
-
-describe("__subtractUnit__", () => {
-  it("should take a date, unit of time, and a quantity and call the correct Subtraction | Unit Function", () => {
-    // mock and check function calls somehow?
-    // subtractUnit()
-  });
-});
 
 describe("__subtractDays__", () => {
   it("should take a date, and subtract a quantity of Days from it", () => {

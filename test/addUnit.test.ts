@@ -1,5 +1,4 @@
 import {
-  addUnit,
   addDays,
   addMonths,
   addYears,
@@ -9,13 +8,6 @@ import {
   addWeeks
 } from "../src/addUnit";
 
-
-describe("__addUnits__", () => {
-  it("should take a date, unit of time, and a quantity and call the correct Addition | Unit Function", () => {
-    // mock and check function calls somehow?
-    // addUnit()
-  });
-});
 
 describe("__addDays__", () => {
   it("should take a date, and add a quantity of Days to it", () => {

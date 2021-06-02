@@ -1,5 +1,4 @@
 import {
-  roundToClosestUnit,
   roundToClosestDay,
   roundToClosestWeek,
   roundToClosestSecond,
@@ -9,11 +8,6 @@ import {
   roundToClosestMonth
 } from "../src/roundToClosestUnit";
 
-
-describe("__roundToClosestUnit__", () => {
-  it("should take a date and unit of time, and round to closest unit of time", () => {
-  });
-});
 
 describe("__roundToClosestDay__", () => {
   it("should take a date, and round to nearest Day", () => {
