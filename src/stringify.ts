@@ -1,28 +1,44 @@
-import { checkForAndGetDateRoundValue } from './stringifyUtils/checkForAndGetDateRoundValue'
+import { isDateRounded } from './stringifyUtils/isDateRounded'
+import {
+  createYearOperator, createDayOrWeekOperator, createHourOperator, createMinuteOperator,
+  createSecondOperator, createMonthOperator
+} from './stringifyUtils/createShorthandOperator'
 
+
+function checkForAndGetDateRoundValue(date: Date, now: Date): string|null { 
+  if (
+    isDateRounded(date) && 
+    isDateRounded(date) !== isDateRounded(now)
+  ) return isDateRounded(date)
+
+  return null
+}
 
 export function stringify(date: Date, givenNow?: Date): string {
-  let now = givenNow || new Date()
+  const now = givenNow || new Date()
+  const unitsAndOperators:string[] = []
   const dateRound = checkForAndGetDateRoundValue(date, now)
-  console.log(`dateRound:............:${dateRound}`)
 
-  // if rounded by years, get yearsBetween
-  // if rounded by months, get months and years between
-  // if rounded by weeks, get whole weeks or days between, months, and years between
-  // if rounded by days, get days, months, and years between
-  // if rounded by hours, get hours, days, months, and years between
-  // if rounded by minutes, get minutes, hours, days, months, and years between
+  if (dateRound === '/y') createYearOperator(now, date, unitsAndOperators)
+  
+  // if rounded by months,  get                                 months and years between
+  // if rounded by weeks,   get                    weeks/days, months, and years between
+  // if rounded by days,    get                    weeks/days, months, and years between
+  // if rounded by hours,   get                   hours, days, months, and years between
+  // if rounded by minutes, get          minutes, hours, days, months, and years between
   // if rounded by seconds, get seconds, minutes, hours, days, months, and years between
-  // if not rounded at all - get all of the above?
 
-  const differenceInSeconds = (now.getTime() - date.getTime()) / 1000;
-  const yearsBetween = Math.floor(differenceInSeconds / 31536000);
-  const monthsBetween = Math.floor((differenceInSeconds % 31536000) / 2628000);
-  const daysBetween = Math.floor(((differenceInSeconds % 31536000) % 2628000) / 86400);
-  console.log(`differenceInSeconds:..:${differenceInSeconds}`)
-  console.log(`yearsBetween:.........:${yearsBetween}`)
-  console.log('monthsBetween:', monthsBetween)
-  console.log('daysBetween:', daysBetween)
+  if (!dateRound) {
+    createYearOperator(now, date, unitsAndOperators)
+    createMonthOperator(now, date, unitsAndOperators)
+    createDayOrWeekOperator(now, date, unitsAndOperators)
+    createHourOperator(now, date, unitsAndOperators)
+    createMinuteOperator(now, date, unitsAndOperators)
+    createSecondOperator(now, date, unitsAndOperators)
+  }
 
-  return 'now/y' // Fake News
+  let result = 'now'
+  if (unitsAndOperators.length > 0) result = `${result}${unitsAndOperators.join('')}`
+
+  return dateRound ? result + dateRound : result
 }

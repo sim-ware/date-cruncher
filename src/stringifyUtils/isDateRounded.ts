@@ -1,13 +1,4 @@
-export function checkForAndGetDateRoundValue(date: Date, now: Date): string|null { 
-  if (
-    isDateRounded(date) && 
-    isDateRounded(date) !== isDateRounded(now)
-  ) return isDateRounded(date)
-
-  return null
-}
-
-function isDateRounded(date: Date): string|null {
+export function isDateRounded(date: Date): string|null {
   const areSecondsRounded = date.getUTCMilliseconds() === 0
   const areMinutesRounded = date.getUTCSeconds() === 0 && areSecondsRounded
   const areHoursRounded = date.getUTCMinutes() === 0 && areMinutesRounded
